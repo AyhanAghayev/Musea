@@ -1,0 +1,14 @@
+bin/
+obj/
+.vs/
+.idea/
+Migrations/
+*.user
+*.suo
+*.db
+*.sqlite
+*.log
+.env
+*.cache
+appsettings.Development.json
+appsettings.json

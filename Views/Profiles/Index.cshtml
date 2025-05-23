@@ -1,0 +1,53 @@
+@model Profiles
+<body>
+    <main class="profile-page">
+        <div class="profile-header">
+            <div class="profile-info">
+                <form method="post" action="/Account/Changepfp" enctype="multipart/form-data">
+                    <label>
+                        <img src="@(@Model.ProfilePicturePath ?? "/pfps/default-user.png")" alt="username" class="profile-avatar">
+                        <input type="file" name="File" style="display: none;" onchange="this.form.submit()">
+                    </label>
+                </form>
+                <div class="profile-details">
+                    <h1 class="profile-username">@("@"+ Model.UserName)</h1>
+                    <div class="profile-stats">
+                        <div class="stat">
+                            <span class="stat-value">@Model.Post.Count</span>
+                            <span class="stat-label">Posts</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">@Model.Followers.Count</span>
+                            <span class="stat-label">Followers</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">@Model.Following.Count</span>
+                            <span class="stat-label">Following</span>
+                        </div>
+                        <form method="post" name="userName" action="/Profiles/Follow/@Model.UserName">
+                            <button type="submit" class="follow-btn"> Follow </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="profile-content">
+            <h2 class="section-title">Posts</h2>
+            <div class="masonry-grid" id="userGrid">
+                @foreach (var post in @Model.Post)
+                {
+                    <div class="pin">
+                        <div class="overlay">
+                            <h3 class="title">@post.Name</h3>
+                            <p class="description">@post.Description</p>
+                        </div>
+                        <img src="@post.PathToFile" alt="">
+                    </div>
+                }
+            </div>
+        </div>
+    </main>
+
+</body>
+

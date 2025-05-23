@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Musea</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/styles.css" asp-append-version="true" />
+</head>
+<body>
+<nav class="navbar">
+    <div class="nav-left">
+        <svg class="logo" viewBox="0 0 24 24" width="24" height="24">
+            <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+            <circle fill="currentColor" cx="12" cy="12" r="3"/>
+        </svg>
+        <a href="/" class="brand">Musea</a>
+    </div>
+    <div class="nav-middle">
+        <form id="searchForm" onsubmit="searchUser(event)">
+            <input type="search" placeholder="Search..." class="search-bar">
+        </form>
+    </div>
+    <div class="nav-right">
+        <a href="/"> <button class="nav-btn home">Home</button> </a>
+        <a href="/Posts/Create"> <button class="nav-btn create">Create</button> </a>
+        <div class="profile-btn" id="profileBtn">
+            @await Component.InvokeAsync("ProfilePicture")
+        </div>
+    </div>
+</nav>
+    <script>
+        function searchUser(event){
+            event.preventDefault()
+            search = document.getElementsByClassName("search-bar")[0]
+            window.location = "/Profiles/" + search.value.trim()
+        }
+    </script>
+
+    @RenderBody()
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

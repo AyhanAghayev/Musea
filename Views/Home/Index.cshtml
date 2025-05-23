@@ -1,0 +1,42 @@
+<body>
+    <div class="intro-overlay" id="introOverlay">
+        <div class="intro-content">
+            <svg class="intro-logo" viewBox="0 0 24 24" width="48" height="48">
+                <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                <circle fill="currentColor" cx="12" cy="12" r="3"/>
+            </svg>
+            <h1 class="intro-title">Welcome to Musea</h1>
+            <p class="intro-description">Discover endless inspiration with Musea. Share, save, and explore creative ideas from around the world.</p>
+            <div class="intro-buttons">
+                <button class="intro-btn primary" onclick="getStarted()">Get Started</button>
+                <button class="intro-btn secondary">Learn More</button>
+            </div>
+        </div>
+    </div>
+<main>
+
+    <div class="masonry-grid">
+        @foreach (var post in Model)
+        {
+            <div class="pin">
+                <div class="overlay">
+                    <h3 class="title">@post.Name</h3>
+                    <p class="description">@post.Description</p>
+                </div>
+                <img src="@post.PathToFile" alt="@post.Name">
+            </div>
+        }
+    </div>
+
+    <script>
+        if(localStorage.getItem("introDismissed")) {
+            document.getElementById('introOverlay').style.display = 'none';
+        }
+
+        function getStarted(){
+            localStorage.setItem("introDismissed", true);
+            document.getElementById('introOverlay').style.display = 'none';
+        }
+    </script>
+</main>
+</body>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    <main class="auth-page">
+        <div class="auth-container">
+            <h1>Create your Musea Account</h1>
+            <form method="post" action="/Auth/Register" id="registerForm" class="auth-form" onsubmit="return checkIfSame()">
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="UserName" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="Password" required>
+                </div>
+                <div class="input-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required>
+                </div>
+                <button type="submit" class="submit-btn">Register</button>
+            </form>
+            <p class="auth-switch">Already have an account? <a href="/Auth/Login">Login here</a></p>
+        </div>
+    </main>
+
+<script>
+    function checkIfSame() {
+        let password = document.getElementById("password");
+        let passwordConfirmation = document.getElementById("confirmPassword");
+        if (password.value != passwordConfirmation.value) {
+            alert("Passwords do not match!");
+            return false;
+        }
+        return true;
+    }
+</script>
+</body>
+</html>
+
